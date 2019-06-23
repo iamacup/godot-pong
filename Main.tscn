@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Bat.tscn" type="PackedScene" id=3]
+[ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 512 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 492, 10 )
+
+[node name="Main" type="Node"]
+script = ExtResource( 1 )
+Ball = ExtResource( 2 )
+
+[node name="PlayerBat" parent="." instance=ExtResource( 3 )]
+position = Vector2( 512, 50 )
+
+[node name="NPCBat" parent="." instance=ExtResource( 3 )]
+position = Vector2( 512, 974 )
+
+[node name="LeftBumper" type="StaticBody2D" parent="."]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBumper"]
+position = Vector2( 10, 512 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="LeftBumper"]
+margin_right = 20.0
+margin_bottom = 1024.0
+
+[node name="RightBumper" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 1004, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBumper"]
+position = Vector2( 10, 512 )
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="RightBumper"]
+margin_right = 20.0
+margin_bottom = 1024.0
+
+[node name="TopBumper" type="StaticBody2D" parent="."]
+editor/display_folded = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBumper"]
+position = Vector2( 512, 10 )
+shape = SubResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="TopBumper"]
+margin_left = 20.0
+margin_right = 1004.0
+margin_bottom = 20.0
+color = Color( 1, 0.352941, 0.352941, 1 )
+
+[node name="BottomBumper" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 0, 1004 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomBumper"]
+position = Vector2( 512, 10 )
+shape = SubResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="BottomBumper"]
+margin_left = 20.0
+margin_right = 1004.0
+margin_bottom = 20.0
+color = Color( 0.556863, 1, 0.352941, 1 )
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
